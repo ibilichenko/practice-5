@@ -14,6 +14,8 @@ const tabs = [
 { header: "tab5", content: "tab-content 5" }
 ];
 
+let a = 1
+
 ReactDOM.render(<Accordion tabs={tabs} />, document.getElementById("task1"));
 ReactDOM.render(<Calculator />, document.getElementById("task2"));
 

@@ -2,7 +2,7 @@ import chai from "chai";
 import React from "react";
 import ReactTestUtils from "react-dom/test-utils";
 
-import Calculator from "../../src/task-2.js";
+import Calculator from "../../src/task-2";
 
 const assert = chai.assert;
 const component = ReactTestUtils.renderIntoDocument(<Calculator />);

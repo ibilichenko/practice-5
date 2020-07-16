@@ -1,20 +1,19 @@
 import config from "./rollup.config";
 import merge from "lodash/merge";
 
-
 config.external = [
     "mocha", "chai", ...config.external, "react-dom/test-utils"
 ];
 
 export default merge({
-    input: "test/**/*.spec.js",
+    input: 'test/**/*.spec.jsx',
     output: {
-        file: "build/test-bundle.js"
+      file: 'build/test-bundle.js'
     },
     globals: {
-        mocha: "mocha",
-        chai: "chai",
-        "react-dom/test-utils": "ReactTestUtils"
+      mocha: 'mocha',
+      chai: 'chai',
+      "react-dom/test-utils": "ReactTestUtils"
     },
-    intro: "if (typeof module !== \"undefined\") require(\"source-map-support\").install();"
-}, config);
+    intro: 'if (typeof module !== "undefined") require("source-map-support").install();'
+  }, config);

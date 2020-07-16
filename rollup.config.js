@@ -1,20 +1,17 @@
 
-import babel from "rollup-plugin-babel";
-import babelrc from "babelrc-rollup";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import replace from "rollup-plugin-replace";
-import json from "rollup-plugin-json";
-import multiEntry from "rollup-plugin-multi-entry";
+// import babelrc from "babelrc-rollup";
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import multiEntry from '@rollup/plugin-multi-entry';
+import replace from "@rollup/plugin-replace";
+import resolve from '@rollup/plugin-node-resolve';
 
 
 export default {
     plugins: [
         json(),
-        babel(babelrc({
-            path: ".babelrc.rollup",
-            addModuleOptions: false
-        })),
+        babel(),
         replace({
             "process.env.NODE_ENV": JSON.stringify( "development" )
         }),
