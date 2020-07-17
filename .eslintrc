@@ -22,6 +22,7 @@
     "no-undefined": "off",
     "require-jsdoc": "off",
     "semi": "off",
+    "no-unused-vars": "warn",
     "space-before-function-paren": "off",
     "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
     "no-trailing-spaces": ["error", { "skipBlankLines": true }]

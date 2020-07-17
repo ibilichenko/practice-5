@@ -22,6 +22,7 @@
   ],
   "scripts": {
     "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix",
     "start": "run-p build:dev sync:dev",
     "test": "mocha",
     "test:all": "mocha ./test/**/*.spec.jsx",
