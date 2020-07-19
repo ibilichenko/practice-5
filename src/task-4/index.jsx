@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import Weather from "./components/Weather";
+import Weather from "./components/Weather.jsx";
 import reducer from "./reducers"
 import { Provider } from "react-redux"
 import { createStore, applyMiddleware, compose } from "redux";

@@ -11,7 +11,7 @@ export default class Accordion extends React.Component {
                         Tab 1
           </div>
           <div className="card-body">
-                        Tab 1 body
+                        Tab 1 body22
           </div>
         </div>
         <div className="card">

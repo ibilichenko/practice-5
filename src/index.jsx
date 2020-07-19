@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Accordion from "./task-1";
-import Calculator from "./task-2";
-import Tabs from "./task-3";
-import "./task-4";
+import Accordion from "./task-1.jsx";
+import Calculator from "./task-2.jsx";
+import Tabs from "./task-3.jsx";
+import "./task-4/index.jsx";
 
 const tabs = [
   { header: "tab1", content: "tab-content 1" },
@@ -13,8 +13,6 @@ const tabs = [
   { header: "tab4", content: "tab-content 4" },
   { header: "tab5", content: "tab-content 5" }
 ];
-
-let a = 1
 
 ReactDOM.render(<Accordion tabs={tabs} />, document.getElementById("task1"));
 ReactDOM.render(<Calculator />, document.getElementById("task2"));

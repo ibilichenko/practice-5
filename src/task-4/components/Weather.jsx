@@ -1,6 +1,6 @@
 import React from "react";
-import WeatherDay from "./WeatherDay";
-import WeatherDetails from "./WeatherDetails";
+import WeatherDay from "./WeatherDay.jsx";
+import WeatherDetails from "./WeatherDetails.jsx";
 
 import { daysShort } from "../api/data-generator";
 import { connect } from "react-redux";
