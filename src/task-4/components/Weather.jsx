@@ -5,17 +5,19 @@ import {fetchWeekForecast} from "../actions/week-forecast"
 
 import { daysShort } from "../api/data-generator";
 import { connect } from "react-redux";
+import { weekForecast } from "../reducers/week-forecast.js";
 
 class Weather extends React.Component {
   componentDidMount() {
-    console.log(this.props.method());
+    const disp = this.props.dispatch;
+    this.props.method(this.props.dispatch,this.props.getState)
   }
 
   render() {
     if(this.props.weekError) {
       return (
         <div className="weather">
-          <div className="error">Error occurred during data fetch. Try to <button>reload</button></div>
+          <div className="error">Error occurred during data fetch. Try to <button onClick={this.props.method(this.props.dispatch,this.props.getState)}>reload</button></div>
         </div>
       )
     }
@@ -27,9 +29,9 @@ class Weather extends React.Component {
       )
     } else {
       return (
-        <div className="weather">
+        <div className="weather" onLoad={() => console.log(this.props.weekForecast)}>
           <ul className="list-inline mx-auto">
-            {daysShort.map(day => (
+            {this.props.weekForecast.map(day => (
               <WeatherDay
                 day={day}
                 key={day.dt} />
@@ -44,6 +46,7 @@ class Weather extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  getState: function() {return state},
   weekLoading: state.weekLoading,
   weekError: state.weekError,
   weekForecast: state.weekForecast
