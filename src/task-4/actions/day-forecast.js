@@ -5,7 +5,9 @@ export const FETCH_DAY_SUCCESS = "FETCH_DAY_SUCCESS";
 export const FETCH_DAY_FAILURE = "FETCH_DAY_FAILURE";
 
 export const openDayDetails = dt => (dispatch, getState) => {
-  // Change me!
+  dispatch({type: OPEN_DAY_DETAILS,
+    dt: getState().selectedDt === dt ? null : dt
+  })
 };
 
 const fetchDayStart = (dt) => ({

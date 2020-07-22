@@ -4,37 +4,41 @@ import { connect } from "react-redux";
 
 class WeatherDetails extends React.Component {
 
+  showData() {
+    console.log(days[Object.keys(days)[0]])
+  }
+
   render() {
     const day = days[Object.keys(days)[0]];
 
     return (
-      <div className="details">
+      <div className="details" onLoad={this.showData}>
         <div className="day-name">
-          <div>Tue, Apr 17</div>
-          <img src="img/rain.png" alt="Raining" />
+          <div>{new Date(day.dt).toLocaleDateString('en-US',{weekday:'short', month:'short', day: 'numeric'})}</div>
+          <img src={`img/${day.weather.icon}.png`} alt="Raining" />
         </div>
         <div>
           <dl>
             <dt>Min temp</dt>
-            <dd>11&#x2103;</dd>
+            <dd>{Math.round(day.temp.min)}&#x2103;</dd>
 
             <dt>Max Temp</dt>
-            <dd>19&#x2103;</dd>
+            <dd>{Math.round(day.temp.max)}&#x2103;</dd>
 
             <dt>Weather</dt>
-            <dd>Raining</dd>
+            <dd>{day.weather.description}</dd>
           </dl>
         </div>
         <div>
           <dl>
             <dt>Wind</dt>
-            <dd>5 m/s</dd>
+            <dd>{`${day.speed}m/s`}</dd>
 
             <dt>Humidity</dt>
-            <dd>56%</dd>
+            <dd>{`${day.humidity}%`}</dd>
 
             <dt>Pressure</dt>
-            <dd>981 hpa</dd>
+            <dd>{`${day.pressure}hpa`}</dd>
           </dl>
         </div>
       </div>
