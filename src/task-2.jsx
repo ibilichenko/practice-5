@@ -1,22 +1,6 @@
 import React from "react";
-import { connectAdvanced } from "react-redux";
+//import { connectAdvanced } from "react-redux";
 
-
-class Input extends React.Component {
-  render() {
-    return (
-      <input type={this.props.type} readOnly={this.props.readOnly === "true" ? "readonly" : ""}
-        className={this.props.clases} value={this.props.value} pattern="[0-9]" onChange={this.props.onChange}></input>
-    )
-  }
-}
-class Button extends React.Component {
-  render() {
-    return (
-      <button className={this.props.clases} onClick={this.props.onClick}>{this.props.name}</button>
-    )
-  }
-}
 class Calculator extends React.Component {
   constructor(props) {
     super(props)
@@ -39,7 +23,7 @@ class Calculator extends React.Component {
 
   handleClick(event) {
     const operationType = event.target.textContent;
-    let result, operand1, operand2;
+    let result;
     switch(operationType) {
     case 'Add': result = Number(this.state.operand1) + Number(this.state.operand2);
       break;
@@ -57,21 +41,27 @@ class Calculator extends React.Component {
   }
   render() {
     return (
+
+      
       <div className="container">
         <div className="row">
-          <div className="col-3"><Input type='text' value={this.state.operand1} onChange={this.handleChangeOperand1}/></div>
-          <div className="col-3"><Input type='text' value={this.state.operand2} onChange={this.handleChangeOperand2}/></div>
-          <div className="col-2"><Button clases="btn btn-block btn-danger" name="Clear" onClick={this.handleClick}/></div>
+          <div className="col-3">
+            <input type="number" value={this.state.operand1} onChange={this.handleChangeOperand1} placeholder="Operand 1"></input>
+          </div>
+          <div className="col-3">
+            <input type="number" value={this.state.operand2} onChange={this.handleChangeOperand2} placeholder="Operand 2"></input>
+          </div>
+          <div className="col-2"><button className="btn btn-block btn-danger" onClick={this.handleClick}>Clear</button></div>
         </div>
         <div className="row my-3">
-          <div className="col-2"><Button clases="btn btn-block btn-secondary" name="Add" onClick={this.handleClick} /></div>
-          <div className="col-2"><Button clases="btn btn-block btn-secondary" name="Subtract" onClick={this.handleClick} /></div>
-          <div className="col-2"><Button clases="btn btn-block btn-secondary" name="Multiple" onClick={this.handleClick} /></div>
-          <div className="col-2"><Button clases="btn btn-block btn-secondary" name="Divide" onClick={this.handleClick} /></div>
+          <div className="col-2"><button className="btn btn-block btn-secondary" onClick={this.handleClick}>Add</button></div>
+          <div className="col-2"><button className="btn btn-block btn-secondary" onClick={this.handleClick}>Subtract</button></div>
+          <div className="col-2"><button className="btn btn-block btn-secondary" onClick={this.handleClick}>Multiple</button></div>
+          <div className="col-2"><button className="btn btn-block btn-secondary" onClick={this.handleClick}>Divide</button></div>
         </div>
         <div className="row">
           <div className="col-4">
-            <Input type='number' readOnly="true" value={this.state.result}/>
+            <input type='number' readOnly={true} value={this.state.result}/>
           </div>
         </div>
       </div>

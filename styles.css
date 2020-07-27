@@ -79,3 +79,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.closeBtn {
+    color: red;
+    float: right;
+}

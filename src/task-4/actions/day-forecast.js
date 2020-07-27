@@ -6,7 +6,7 @@ export const FETCH_DAY_FAILURE = "FETCH_DAY_FAILURE";
 
 export const openDayDetails = dt => (dispatch, getState) => {
   dispatch({type: OPEN_DAY_DETAILS,
-    dt: getState().selectedDt === dt ? null : dt
+    dt: getState().selectedDt.selectedDt === dt ? null : dt
   })
 };
 

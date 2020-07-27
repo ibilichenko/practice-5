@@ -2,22 +2,24 @@ import React from "react";
 import WeatherDay from "./WeatherDay.jsx";
 import WeatherDetails from "./WeatherDetails.jsx";
 import {fetchWeekForecast} from "../actions/week-forecast"
-
-import { daysShort } from "../api/data-generator";
+import ErrorLogger from "./ErrorLogger.jsx";
 import { connect } from "react-redux";
-import { weekForecast } from "../reducers/week-forecast.js";
+import PropTypes from "prop-types";
 
 class Weather extends React.Component {
   componentDidMount() {
-    const disp = this.props.dispatch;
-    this.props.method(this.props.dispatch,this.props.getState)
+    this.props.fetchWeekForecast()
   }
 
   render() {
     if(this.props.weekError) {
       return (
-        <div className="weather">
-          <div className="error">Error occurred during data fetch. Try to <button onClick={this.props.method(this.props.dispatch,this.props.getState)}>reload</button></div>
+        <div>
+          <ErrorLogger/>
+       
+          <div className="weather">
+            <div className="error">Error occurred during data fetch. Try to <button onClick={() => this.props.fetchWeekForecast()}>reload</button></div>
+          </div>
         </div>
       )
     }
@@ -29,7 +31,7 @@ class Weather extends React.Component {
       )
     } else {
       return (
-        <div className="weather" onLoad={() => console.log(this.props.weekForecast)}>
+        <div className="weather">
           <ul className="list-inline mx-auto">
             {this.props.weekForecast.map(day => (
               <WeatherDay
@@ -46,13 +48,22 @@ class Weather extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  getState: function() {return state},
   weekLoading: state.weekLoading,
   weekError: state.weekError,
-  weekForecast: state.weekForecast
+  weekForecast: state.weekForecast,
+  errors: state.errors
 });
 const mapDispatchToProps = dispatch => ({
-  method: dispatch(fetchWeekForecast)
+  fetchWeekForecast: (id) => dispatch(fetchWeekForecast(id))
+  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Weather);
+
+Weather.propTypes = {
+  fetchWeekForecast: PropTypes.func,
+  weekError: PropTypes.bool,
+  weekLoading: PropTypes.bool,
+  weekForecast: PropTypes.array,
+}
+

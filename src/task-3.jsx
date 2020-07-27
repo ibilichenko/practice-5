@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 
 
 class TabHeader extends React.Component {
@@ -15,7 +17,7 @@ class TabContent extends React.Component {
   render() {
     return(
       <div className={this.props.class}>
-        {this.props.constentTpl ? this.props.contentTpl({item: this.props.item, index: this.props.id + 1}) : this.props.item.content}
+        {this.props.contentTpl ? this.props.contentTpl({item: this.props.item, index: this.props.id + 1}) : this.props.item.content}
       </div>
     )
   }
@@ -30,7 +32,6 @@ export default class Tabs extends React.Component {
 
   changeActive(e) {
     this.setState({showed: Number(e.target.id)})
-    //console.log(this.state)
   }
   render() {
     return (
@@ -52,4 +53,35 @@ export default class Tabs extends React.Component {
       </div>
     );
   }
+}
+
+Tabs.propTypes = {
+  tabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      header: PropTypes.string,
+      content: PropTypes.string
+    })
+  ),
+  headerTpl: PropTypes.func,
+  contentTpl: PropTypes.func
+}
+
+TabHeader.propTypes = {
+  id: PropTypes.number,
+  active: PropTypes.string,
+  headerTpl: PropTypes.func,
+  item: PropTypes.shape({
+    header: PropTypes.string,
+    content: PropTypes.string
+  }),
+  onClick: PropTypes.func,
+}
+TabContent.propTypes = {
+  class: PropTypes.string,
+  contentTpl: PropTypes.func,
+  item: PropTypes.shape({
+    header: PropTypes.string,
+    content: PropTypes.string
+  }),
+  id: PropTypes.number
 }
