@@ -28,9 +28,8 @@ function checkInput(el, placeholder, cName="col-3") {
   assert.equal(el.className, cName, el.outerHTML);
   assert.equal(el.children.length, 1, "count of elements in " + el.innerHTML);
   assert.equal(el.children[0].tagName, "INPUT", el.innerHTML);
-  assert.equal(el.children[0].type, "text", el.innerHTML);
   assert.equal(el.children[0].placeholder, placeholder, el.innerHTML);
-  assert.isTrue(el.children[0].classList.contains("form-control"), "class btn in " + el.innerHTML);
+  assert.isTrue(el.children[0].classList.contains("form-control"), "class 'form-control' in " + el.innerHTML);
 }
 
 describe("<Calculator />", () => {
