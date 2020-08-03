@@ -39,22 +39,26 @@ const weekLoading = (state = false, action) => {
 };
 
 const errors = (state = [], action) => {
+  let res = [];
   switch(action.type) {
   case FETCH_DAY_FAILURE :
-    state.push({id: state.length + 1, error: action.type})
+    state.push({id: state.length + 1, error: action.error})
+    state.forEach(element => res.push(element))
 
-    return state;
+    return res;
+
   case FETCH_WEEK_FAILURE :
-    state.push({id: state.length + 1, error: action.type})
+    state.push({id: state.length + 1, error: action.error})
+    state.forEach(element => res.push(element))
 
-    return state;
+    return res;
+
   case DELETE_ERROR:
     state.forEach((element, index) => {
       if (element.id === Number(action.errorId)) {
         state.splice(index, 1);
       }
     })
-    let res = [];
     state.forEach(element => res.push(element))
 
     return res;

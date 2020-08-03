@@ -12,7 +12,7 @@ class Weather extends React.Component {
   }
 
   render() {
-    if(this.props.weekError) {
+    if(this.props.weekError ) {
       return (
         <div>
           <ErrorLogger/>
@@ -31,15 +31,18 @@ class Weather extends React.Component {
       )
     } else {
       return (
-        <div className="weather">
-          <ul className="list-inline mx-auto">
-            {this.props.weekForecast.map(day => (
-              <WeatherDay
-                day={day}
-                key={day.dt} />
-            ))}
-          </ul>
-          <WeatherDetails />
+        <div>
+          <ErrorLogger/>
+          <div className="weather">
+            <ul className="list-inline mx-auto">
+              {this.props.weekForecast.map(day => (
+                <WeatherDay
+                  day={day}
+                  key={day.dt} />
+              ))}
+            </ul>
+            <WeatherDetails />
+          </div>
         </div>
       )
     }

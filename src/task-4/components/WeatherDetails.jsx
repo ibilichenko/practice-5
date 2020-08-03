@@ -2,10 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import {fetchDayForecast} from "../actions/day-forecast"
 import PropTypes from "prop-types";
+import { selectedDt } from "../reducers/day-forecast";
 
 class WeatherDetails extends React.Component {
   componentDidUpdate() {
-    this.props.fetchDayForecast(this.props.selectedDt.selectedDt)
+    if(!this.props.forecast[this.props.selectedDt.selectedDt]) {
+      this.props.fetchDayForecast(this.props.selectedDt.selectedDt)
+    }
   }
   
   render() {
@@ -14,11 +17,18 @@ class WeatherDetails extends React.Component {
       return (
         <h1></h1>
       )
-    } else if(dayForecast){
+    } else if(dayForecast) {
       if(dayForecast.loading === true) {
         return (
           <div className="details">
             <span className="fa fa-spinner fa-spin"></span>
+          </div>
+        )
+        
+      } else if(dayForecast.error === true) {
+        return (
+          <div className="weather">
+            <div className="error">Error occurred during data fetch. Try to <button onClick={() => {this.props.fetchDayForecast(this.props.selectedDt.selectedDt)}}>reload</button></div>
           </div>
         )
       } else if(dayForecast && dayForecast.data) {
@@ -56,10 +66,6 @@ class WeatherDetails extends React.Component {
             </div>
           </div>
         );
-      } else {
-        return (
-          <h1></h1>
-        )
       }
     } else {
       return(
