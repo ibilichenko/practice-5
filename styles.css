@@ -79,3 +79,9 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.closeBtn {
+    background: rgba(255, 255, 255, 0);
+    float: right;
+    border-style: none;
+    color: red;
+}

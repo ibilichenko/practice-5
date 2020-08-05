@@ -24,8 +24,12 @@ const dayForecast = (state = {}, action) => {
 };
 
 const selectedDt = (state = null, action) => {
-  // Change me!
-  return state;
+  if(action.type === OPEN_DAY_DETAILS) {
+    return action.dt;
+  } else{
+    return state;
+  }
+  
 };
 
 export { dayForecast, selectedDt };
