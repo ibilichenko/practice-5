@@ -7,9 +7,7 @@ import { FETCH_DAY_FAILURE, FETCH_DAY_START } from "../actions/day-forecast";
 
 const weekForecast = (state = [], action) => {
   if(action.type === FETCH_WEEK_SUCCESS) {
-    state = action.weekForecast;
-
-    return state;
+    return action.weekForecast;
   } else {
     return state
   }
@@ -26,42 +24,26 @@ const weekLoading = (state = false, action) => {
     return false;
   default: return state;
   }
-    
-  
-
-  // if(action.type === FETCH_WEEK_START) {
-  //   state = false;
-
-  //   return state;
-  // } else if (action.type === FETCH_WEEK_SUCCESS){
-  //   return state;
-  // }
 };
 
 const errors = (state = [], action) => {
-  let res = [];
+  const copy = state.slice();
   switch(action.type) {
   case FETCH_DAY_FAILURE :
-    state.push({id: state.length + 1, error: action.error})
-    state.forEach(element => res.push(element))
-
-    return res;
+    return state.concat({id: state.length + 1, error: action.error});
 
   case FETCH_WEEK_FAILURE :
-    state.push({id: state.length + 1, error: action.error})
-    state.forEach(element => res.push(element))
-
-    return res;
+    return state.concat({id: state.length + 1, error: action.error});
 
   case DELETE_ERROR:
-    state.forEach((element, index) => {
+    
+    copy.forEach((element, index) => {
       if (element.id === Number(action.errorId)) {
-        state.splice(index, 1);
+        copy.splice(index, 1);
       }
     })
-    state.forEach(element => res.push(element))
-
-    return res;
+    
+    return copy;
   default: return state;
   }
 }

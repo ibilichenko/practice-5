@@ -11,9 +11,9 @@ const WeatherDay = props => {
   }
 
   return (
-    <li className={`list-inline-item ${props.selectedDt.selectedDt=== props.day.dt ? "active" : ""}`} onClick={handleClick}>
+    <li className={`list-inline-item ${props.selectedDt === props.day.dt ? "active" : ""}`} onClick={handleClick}>
       <div className="day-name">{new Date(props.day.dt).toLocaleDateString('en-US',{weekday:'short'})}</div>
-      <img src={`img/${props.day.weather.icon}.png`} alt={`${props.day.weather.icon}.png`} />
+      <img src={`img/${props.day.weather.icon}.png`} alt={props.day.weather.description} />
       <div className="temp">{Math.round(props.day.temp.min)}&#x2103; {Math.round(props.day.temp.max)}&#x2103;</div>
     </li>
   );
@@ -30,5 +30,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(WeatherDay);
 WeatherDay.propTypes = {
   openDayDetails: PropTypes.func,
   day: PropTypes.object,
-  selectedDt: PropTypes.object
+  selectedDt: PropTypes.number
 }

@@ -4,11 +4,14 @@ export const FETCH_WEEK_SUCCESS = "FETCH_WEEK_SUCCESS";
 export const FETCH_WEEK_FAILURE = "FETCH_WEEK_FAILURE";
 export const DELETE_ERROR = "DELETE_ERROR";
 
-export const deleteError = (id) => (dispatch, getState) => {
-  dispatch({ type: DELETE_ERROR,
-    errorId: id
-  })
-};
+
+
+export const deleteError = (id) => ({
+  type: DELETE_ERROR,
+  errorId: id
+})
+
+
 
 const fetchWeekStart = () => ({
   type: FETCH_WEEK_START

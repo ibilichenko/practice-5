@@ -12,21 +12,20 @@ class Weather extends React.Component {
   }
 
   render() {
-    if(this.props.weekError ) {
-      return (
-        <div>
-          <ErrorLogger/>
-       
-          <div className="weather">
-            <div className="error">Error occurred during data fetch. Try to <button onClick={() => this.props.fetchWeekForecast()}>reload</button></div>
-          </div>
-        </div>
-      )
-    }
     if(this.props.weekLoading) {
       return (
         <div className="weather">
           <span className="fa fa-spinner fa-spin"></span>
+        </div>
+      )
+    } else if(this.props.weekError) {
+      return (
+        <div>
+          <ErrorLogger/>
+           
+          <div className="weather">
+            <div className="error">Error occurred during data fetch. Try to <button onClick={this.props.fetchWeekForecast}>reload</button></div>
+          </div>
         </div>
       )
     } else {

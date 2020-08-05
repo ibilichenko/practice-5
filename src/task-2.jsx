@@ -9,16 +9,12 @@ class Calculator extends React.Component {
       operand2: "",
       result: ""
     }
-    this.handleChangeOperand1 = this.handleChangeOperand1.bind(this);
-    this.handleChangeOperand2 = this.handleChangeOperand2.bind(this);
+    this.handleChangeOperands = this.handleChangeOperands.bind(this);
     this.handleClick = this.handleClick.bind(this)
   }
-  handleChangeOperand1(e) {
-    this.setState({operand1: e.target.value});
-  }
-
-  handleChangeOperand2(e) {
-    this.setState({operand2: e.target.value});
+  handleChangeOperands(e) {
+    const inputNumb = e.target.placeholder[e.target.placeholder.length - 1]
+    this.setState({[`operand${inputNumb}`]: e.target.value});
   }
 
   handleClick(event) {
@@ -49,10 +45,10 @@ class Calculator extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-3">
-            <input type="number"  value={this.state.operand1} className="form-control" onChange={this.handleChangeOperand1} placeholder="Operand 1"></input>
+            <input type="number"  value={this.state.operand1} className="form-control" onChange={this.handleChangeOperands} placeholder="Operand 1"></input>
           </div>
           <div className="col-3">
-            <input type="number" value={this.state.operand2} className="form-control" onChange={this.handleChangeOperand2} placeholder="Operand 2"></input>
+            <input type="number" value={this.state.operand2} className="form-control" onChange={this.handleChangeOperands} placeholder="Operand 2"></input>
           </div>
           <div className="col-2"><button className="btn btn-block btn-danger" onClick={this.handleClick}>Clear</button></div>
         </div>
